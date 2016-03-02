@@ -1,0 +1,2 @@
+# slice
+Slice any iterable.
