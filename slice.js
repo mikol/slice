@@ -1,10 +1,29 @@
-/* jshint ignore:start *//* jscs:disable */
-!function(e,o){'use strict';var t=[/* DEPENDENCIES */];if('function'==typeof define&&define.amd)define(t,function(){return o.apply(e,[].slice.call(arguments))});else if('object'==typeof module&&module.exports){for(var n=t.length;n--;)t[n]=require(t[n]);module.exports=o.apply(e,t)}}('object'==typeof global&&global||'object'==typeof window&&window||this,
+(function (context) {
+/*jscs:disable validateIndentation*//*jscs:enable validateIndentation*/
+// -----------------------------------------------------------------------------
 
-function () {
-/* jshint ignore:end   *//* jscs:enable  */
-  'use strict';
+'use strict';
 
+var id = 'slice';
+var dependencies = [];
+
+function factory() {
   var prototype = [];
   return prototype.slice.call.bind(prototype.slice);
-});
+}
+
+// -----------------------------------------------------------------------------
+var x = dependencies.length; var o = 'object';
+context = typeof global === o ? global : typeof window === o ? window : context;
+if (typeof define === 'function' && define.amd) {
+  define(dependencies, function () {
+    return factory.apply(context, [].slice.call(arguments));
+  });
+} else if (typeof module === o && module.exports) {
+  for (; x--;) {dependencies[x] = require(dependencies[x]);}
+  module.exports = factory.apply(context, dependencies);
+} else {
+  for (; x--;) {dependencies[x] = context[dependencies[x]];}
+  context[id] = factory.apply(context, dependencies);
+}
+}(this));
